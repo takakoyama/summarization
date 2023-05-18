@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, Response
 import openai
-import config
 from ibm_watson import TextToSpeechV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 import os
