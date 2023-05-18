@@ -3,10 +3,11 @@ import openai
 import config
 from ibm_watson import TextToSpeechV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+import os
 
 
-openai.api_key = config.openai_apikey
-openai.organization = "org-UyJwFhjycnAHScHGFcRstI7a"
+openai.api_key = os.getenv("openai_api")
+openai.organization =os.getenv("openai_organization")
 
 app = Flask(__name__)
 
@@ -20,10 +21,12 @@ def index():
             {"role": "user", "content": f"日本語で要約してください: {prompt}"},
             ],
         )      
-        
+            
         summarized_text= response["choices"][0]["message"]["content"]
 
-    return summarized_text
+        return summarized_text
+    else:
+        return render_template('index.html')
 
 if __name__ == '__main__':
     app.run()
