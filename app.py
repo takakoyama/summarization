@@ -15,7 +15,7 @@ def index():
     if request.method == 'POST':
         prompt = request.form['text']
         response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-3.5-turbo",
         messages=[ 
             {"role": "user", "content": f"日本語で要約してください: {prompt}"},
             ],
