@@ -15,7 +15,7 @@ def index():
     if request.method == 'POST':
         prompt = request.form['text']
         response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[ 
             {"role": "user", "content": f"日本語で要約してください: {prompt}"},
             ],
@@ -23,7 +23,7 @@ def index():
             
         summarized_text= response["choices"][0]["message"]["content"]
 
-        return summarized_text
+        return render_template('output.html',original=prompt, result=summarized_text)
     else:
         return render_template('index.html')
 
